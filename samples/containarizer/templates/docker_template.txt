@@ -1,0 +1,21 @@
+FROM {base_image}
+WORKDIR /app
+
+#copy the application
+COPY /app_source /app
+
+# We copy just the requirements.txt first to leverage Docker cache
+COPY /app_source/requirements.txt /app/requirements.txt
+
+RUN pip install cryptography
+RUN pip install pyjwt==1.7.1
+RUN pip install --trusted-host pypi.python.org -r requirements.txt
+
+ENV FLASK_ENV development
+ENV FLASK_APP microservice
+EXPOSE 5000
+RUN ["pip", "install", "flask"]
+
+ENTRYPOINT [ "python" ]
+
+CMD ["microservice.py" ]

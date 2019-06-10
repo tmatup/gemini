@@ -1,0 +1,19 @@
+{
+	"name": "my model",
+	"owner": "foo@bar.com",
+	"description": "My model does this",
+	"version": "0.1.2",
+	"source": "c:/projects/containerizer/samples/sampleapp1",
+	"baseImage": "python:3.6-slim",
+	"requirements": "c:/projects/containerizer/samples/sampleapp1/requirements.txt",
+	"ssl": false,
+	"auth": false,
+	"logging": true,
+	"throttling": [],
+	"entrypoint":
+	{
+		"module": "sampleapp",
+		"initFunction": "init",
+		"handleRequestFunction": "predict"
+	}
+}
